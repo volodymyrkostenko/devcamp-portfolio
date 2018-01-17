@@ -4,6 +4,7 @@
 	<p><%=portfolio.title%></p>
 	<p><%=portfolio.subtitle%></p>
 	<p><%=portfolio.body%></p>
-	<%= image_tag portfolio.main_image%>
+	<%= image_tag portfolio.main_image unless portfolio.main_image.nil?%>
+	<hr>
 
 <%end%>
