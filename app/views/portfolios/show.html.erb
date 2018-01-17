@@ -1,5 +1,7 @@
-<p><%=@portfolio.title%></p>
-	<p><%=@portfolio.subtitle%></p>
-	<p><%=@portfolio.body%></p>
-	<%= image_tag @portfolio.main_image unless @portfolio.main_image.nil?%>
-	<hr>
+<%=link_to "Back", portfolios_path %>
+
+<%= image_tag @portfolio.main_image unless @portfolio.main_image.nil?%>
+<h1><%=@portfolio.title%></h1>
+<em><%=@portfolio.subtitle%></em>
+<p><%=@portfolio.body%></p>
+
