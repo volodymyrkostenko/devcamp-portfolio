@@ -3,10 +3,18 @@ class PortfoliosController < ApplicationController
 	def index
 		@portfolio_items = Portfolio.all
 	end
+
+	def angular
+		@angular_portfolio_items = Portfolio.angular
+	end
+	def ruby_on_rails
+		@rails_portfolio_items = Portfolio.ruby_on_rails_portfolio_items
+	end
 	def new 
 		@portfolio_item = Portfolio.new
+		3.times{@portfolio_item.technologies.build }
 	end
-	def create
+	def create 
 		@portfolio_item = Portfolio.new(portfolio_params)
 		respond_to do |format|
 			if @portfolio_item.save
@@ -23,6 +31,7 @@ class PortfoliosController < ApplicationController
 
 	end
 	def destroy
+		
 		@portfolio.destroy
 		 respond_to do |format|
 		    format.html { redirect_to portfolios_path, notice: 'Record was remove.' }
@@ -40,7 +49,7 @@ class PortfoliosController < ApplicationController
 	end
 	private 
 		def portfolio_params 
-			params.require(:portfolio).permit(:title, :subtitle, :body)
+			params.require(:portfolio).permit(:title, :subtitle, :body, technologies_attributes: [:name])
 		end
 		def set_portfolio 
 			@portfolio = Portfolio.find(params[:id])

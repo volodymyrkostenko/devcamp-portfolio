@@ -5,3 +5,15 @@
 <em><%=@portfolio.subtitle%></em>
 <p><%=@portfolio.body%></p>
 
+
+
+<h2>Technologies new</h2>
+
+<%unless @portfolio.technologies.nil?%>
+	
+
+	<% @portfolio.technologies.each do |t| %>
+		<%=t.name%>
+	<%end%>
+<%end%>
+
