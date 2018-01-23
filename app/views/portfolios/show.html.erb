@@ -1,18 +1,18 @@
 <%=link_to "Back", portfolios_path %>
 
-<%= image_tag @portfolio.main_image unless @portfolio.main_image.nil?%>
-<h1><%=@portfolio.title%></h1>
-<em><%=@portfolio.subtitle%></em>
-<p><%=@portfolio.body%></p>
+<%= image_tag @portfolio_item.main_image unless @portfolio_item.main_image.nil?%>
+<h1><%=@portfolio_item.title%></h1>
+<em><%=@portfolio_item.subtitle%></em>
+<p><%=@portfolio_item.body%></p>
 
 
 
 <h2>Technologies new</h2>
 
-<%unless @portfolio.technologies.nil?%>
+<%unless @portfolio_item.technologies.nil?%>
 	
 
-	<% @portfolio.technologies.each do |t| %>
+	<% @portfolio_item.technologies.each do |t| %>
 		<%=t.name%>
 	<%end%>
 <%end%>
