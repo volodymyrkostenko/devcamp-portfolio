@@ -1,6 +1,12 @@
 
-<p id="notice"><%= notice %></p>
-<p><%=link_to "Create New Item", new_portfolio_path %></p>
-<%= render partial: 'portfolio_item', collection: @portfolio_items%>  
+<p><%=link_to "New Item", new_portfolio_path, class: "btn btn-primary my-2" if logged_in?(:site_admin)%></p>
+
+<div class="album py-5 bg-light">
+	<div class="container">
+		<div class="row">
+			<%= render partial: 'portfolio_item', collection: @portfolio_items%>
+		</div>
+	</div>
+</div>  
 	
 

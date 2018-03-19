@@ -1,24 +1,14 @@
-<p id="notice"><%= notice %></p>
 
-<h1>Blogs</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Created at</th>
-      <th>Body</th>
-      <th colspan="4"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <%= render @blogs  %>
+      <div class="col-8 blog-main">
+      	<%= link_to 'New Blog', new_blog_path, class: "btn btn-primary btn-lg btn-block" if logged_in?(:site_admin)   %>
+         <%= paginate @blogs %>
+        <%=render @blogs %>
+        <%= paginate @blogs %>
+      </div>
       
-  
-  </tbody>
-</table>
-
+    
 <br>
 
-<%= link_to 'New Blog', new_blog_path %>
+
+ 

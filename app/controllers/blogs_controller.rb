@@ -1,13 +1,15 @@
 class BlogsController < ApplicationController
   before_action :set_blog, only: [:show, :edit, :update, :destroy, :toggle_status]
   layout 'blog'
+  access all: [:show, :index], user: {except: [:destroy, :new, :create, :update, :edit]}, site_admin: :all
   # GET /blogs
   # GET /blogs.json
   def index
-    @blogs = Blog.all
+    @blogs = Blog.order(:created_at).page(params[:page])
+    #@blogs = Blog.all
     @title = "Portfolio Blog"
   end
-
+     
   # GET /blogs/1
   # GET /blogs/1.json
   def show
@@ -29,7 +31,7 @@ class BlogsController < ApplicationController
 
   # POST /blogs
   # POST /blogs.json
-  def create
+  def create     
     @blog = Blog.new(blog_params)
 
     respond_to do |format|

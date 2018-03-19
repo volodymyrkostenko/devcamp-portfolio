@@ -7,17 +7,26 @@
 
     <%= stylesheet_link_tag    'blogs', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <link href="https://fonts.googleapis.com/css?family=Playfair+Display:700,900" rel="stylesheet">
   </head>
-	<p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
+	  <body>
+      <%= render 'shared/blog_nav'%>
+      <div class="container">
+        <main role="main" class="container">
+            <h2  class="blog-post-title">My Blog</h2>
+            
+            <hr>
+          <div class="row">
+          
+            <%= yield %>
+            <%= render 'shared/blog_sidebar'%>
+        
+          </div>
 
-  <body>
-  
-   
-  
-    <%= yield %>
-
-    <%= render "shared/nav", location: "bottom"%>
+        </main>
+        <%= render 'shared/blog_footer'%>
+      </div>
+    
 
    
   </body>
