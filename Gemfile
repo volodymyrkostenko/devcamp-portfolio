@@ -12,6 +12,8 @@ gem 'bootstrap', '~> 4.0.0'
 gem 'devise'
 gem 'friendly_id', '~> 5.1.0' 
 gem 'kaminari'
+gem 'jquery-ui-rails', '~> 6.0', '>= 6.0.1'
+gem 'acts_as_list', '~> 0.9.11'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.1.4'
