@@ -64,4 +64,15 @@ module ApplicationHelper
 	def active?  path
 		'active' if current_page? path
 	end
+
+	def alert
+		if flash[:notice]
+			alert_generation(flash[:notice])
+		end
+	end
+
+
+	def alert_generation(msg)
+		js add_gritter(msg, title:"#{current_user.name}", sticky: false, time: 2000)
+	end
 end

@@ -1,4 +1,6 @@
 @import "bootstrap";
+@import "jquery-ui";
+@import "gritter";
 /*
  * Globals
  */
@@ -8,6 +10,7 @@ a,
 a:focus,
 a:hover {
   color: #fff;
+
 }
 
 /* Custom default button */
@@ -71,12 +74,13 @@ body {
   color: rgba(255, 255, 255, .5);
   background-color: transparent;
   border-bottom: .25rem solid transparent;
-  margin-right: 5px;
+  margin-right: 20px;
+
 }
 
 .nav-masthead .nav-link:hover,
 .nav-masthead .nav-link:focus {
-  border-bottom-color: rgba(255, 255, 255, .25);
+  border-bottom-color: white;
 }
 
 .nav-masthead .nav-link + .nav-link {
@@ -147,8 +151,17 @@ body {
 
  .active{
   font-weight: 800;
-  text-decoration: underline;
+  
 }
+
+
+
+.nav-link:hover{
+  color:white;
+  border-bottom-color:white;
+  margin-rigth: 30px;
+}
+
 
 
 #background{
@@ -170,3 +183,4 @@ body {
 .app-footer{
   color: white;
 }
+
