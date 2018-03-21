@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html>
   <head>
     <meta charset="utf-8">
@@ -14,16 +14,28 @@
 	
 
   <body>
-     <div class="cover-container d-flex h-100 p-3 mx-auto flex-column home">
-
-        <%= render "shared/application_nav"%>
-      	 
+      <div class="cover-container d-flex h-100 p-3 mx-auto flex-column home">
+         <div id="background"></div>
+          <%= video_tag(
+             'HardDrivePhotojpeg.mp4', 
+             id: 'background',
+             muted: true,
+             autoplay: true,
+             loop:true,
+             
+             poster: 'home_bg.png'
+            )%>
+         <%= render "shared/application_nav"%>
+         
 
 
         <%= yield %>
         <%= render "shared/application_footer"%>
        
         <%= source_helper("application")%>
+
+      
+       
     </div>
   </body>
 </html>

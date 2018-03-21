@@ -3,7 +3,7 @@
 <div class="col-md-4 " >
 	<div class="card mb-4 box-shadow" data-id="<%= portfolio_item.id %>">
 		
-		<%= image_tag portfolio_item.thumb_image, class: "card-img-top" unless portfolio_item.main_image.nil?%>
+		<%= image_tag portfolio_img(portfolio_item.thumb_image, 'thumb'),  class: "card-img-top" %>
 
 		<div class="card-body">
 			<p class="card-text">
