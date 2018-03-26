@@ -1,17 +1,16 @@
+<div class="col-sm-8 blog-main">
 
-<div class="col-md-8">
-	<h3>
-	  
-	  <%= @blog.title %>
-	</h3>
+  <h2><%= @blog.title %></h2>
 
-	<p>
-	 
-	  <%= @blog.body %>
-	</p>
+  <%= link_to 'Edit', edit_blog_path(@blog) if logged_in?(:site_admin) %>
 
-	<%= link_to 'Edit', edit_blog_path(@blog), class: "btn btn-primary"  if logged_in?(:site_admin)%> 
-	<%= link_to 'Back', blogs_path,  class: "btn btn-secondary"  %>
-	
-</div>	
-	
+  <p>
+    <%= @blog.body %>
+  </p>
+
+  <%= render 'comments/comment_form' %>
+
+  <div id="comments" data-blog-id="<%= @blog.id %>">
+    <%= render @comments %>
+  </div>
+</div>

@@ -18,7 +18,7 @@ module ApplicationHelper
     
 	end
 	def copyright_generator
-		DevcampViewTool::Render.copyright 'Vova', 'All right reserved'
+		"DevcampViewTool::Render.copyright 'Vova', 'All right reserved'"
 	end
 	def nav_items
 		[ 	

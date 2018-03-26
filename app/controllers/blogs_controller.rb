@@ -1,46 +1,45 @@
 class BlogsController < ApplicationController
   before_action :set_blog, only: [:show, :edit, :update, :destroy, :toggle_status]
-  layout 'blog'
-  access all: [:show, :index], user: {except: [:destroy, :new, :create, :update, :edit]}, site_admin: :all
+  layout "blog"
+  access all: [:show, :index], user: {except: [:destroy, :new, :create, :update, :edit, :toggle_status]}, site_admin: :all
+
   # GET /blogs
   # GET /blogs.json
   def index
-    @blogs = Blog.order(:created_at).page(params[:page])
-    #@blogs = Blog.all
-    @title = "Portfolio Blog"
+    @blogs = Blog.page(params[:page]).per(5)
+    @page_title = "My Portfolio Blog"
   end
-     
+
   # GET /blogs/1
   # GET /blogs/1.json
   def show
-    @title = @blog.title
-    @seo_keywords = @blog.title
+    @blog = Blog.includes(:comments).friendly.find(params[:id])
+    @comments = @blog.comments.order("created_at DESC")
+    @comment = Comment.new
+
+    @page_title = @blog.title
+    @seo_keywords = @blog.body
   end
 
   # GET /blogs/new
   def new
     @blog = Blog.new
-    @topics = Topic.all
-    @title = " New blog"
   end
 
   # GET /blogs/1/edit
   def edit
-    @title = "Edit #{@blog.title}"
   end
 
   # POST /blogs
   # POST /blogs.json
-  def create     
+  def create
     @blog = Blog.new(blog_params)
 
     respond_to do |format|
       if @blog.save
-        format.html { redirect_to @blog, notice: 'Blog was successfully created.' }
-        format.json { render :show, status: :created, location: @blog }
+        format.html { redirect_to @blog, notice: 'Your post is now live.' }
       else
         format.html { render :new }
-        format.json { render json: @blog.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -51,10 +50,8 @@ class BlogsController < ApplicationController
     respond_to do |format|
       if @blog.update(blog_params)
         format.html { redirect_to @blog, notice: 'Blog was successfully updated.' }
-        format.json { render :show, status: :ok, location: @blog }
       else
         format.html { render :edit }
-        format.json { render json: @blog.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -64,29 +61,29 @@ class BlogsController < ApplicationController
   def destroy
     @blog.destroy
     respond_to do |format|
-      format.html { redirect_to blogs_url, notice: 'Blog was successfully destroyed.' }
+      format.html { redirect_to blogs_url, notice: 'Post was removed.' }
       format.json { head :no_content }
     end
   end
+
   def toggle_status
-     if @blog.draft?
+    if @blog.draft?
       @blog.published!
     elsif @blog.published?
-      @blog.draft! 
-    end 
-    redirect_to blogs_url, notice: 'Blog status was updated.'
+      @blog.draft!
+    end
+        
+    redirect_to blogs_url, notice: 'Post status has been updated.'
   end
 
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_blog
-      
       @blog = Blog.friendly.find(params[:id])
-
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def blog_params
-      params.require(:blog).permit(:title, :body, :topic_id)
+      params.require(:blog).permit(:title, :body)
     end
 end
