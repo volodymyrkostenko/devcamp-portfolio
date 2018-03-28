@@ -28,10 +28,19 @@ a:hover {
  * Base structure
  */
 
+
+
+
+
+
+
+
+
+
 html,
 body {
   height: 100%;
- 
+ font-family: 'Lato', sans-serif;
 }
 
 body {
@@ -50,6 +59,14 @@ body {
   -ms-flex-pack: center;
   -webkit-box-pack: center;
   justify-content: center;
+}
+h1, .h1, 
+h2, .h2,
+h3, .h3,
+h4, .h4,
+h5, .h5,
+h6, .h6 {
+  font-family: 'Roboto Slab', serif;
 }
 
 .cover-container {
@@ -202,3 +219,26 @@ body {
 
    
 }
+.app-card-container{
+  color: black;
+  text-align: left;
+  a, a:focus, a:hover{
+    color: blue;
+  }
+  margin-bottom: 300px;
+}
+
+.app-card-container >.card{
+  padding: 40px;
+}
+
+.info{
+  width:40%;
+  display: inline;
+}
+.skill{
+  
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+

@@ -10,15 +10,15 @@ module ApplicationHelper
   		end
 
 	end
-	def source_helper(layout_name)
+	def source_helper(styles)
 		if session[:source]
-		  greeting  = " Thank for visiting me on #{session[:source]} and you are on #{layout_name} page"
-	      content_tag(:p, greeting, class: 'My-class')
+		  greeting  = " Thank for visiting me on #{session[:source]}, please feel free to #{link_to 'contact me', contact_path} if you'd like to work together."
+	      content_tag(:div, greeting.html_safe, class: styles)
 	    end
     
 	end
 	def copyright_generator
-		"DevcampViewTool::Render.copyright 'Vova', 'All right reserved'"
+		DevcampViewTool::Render.copyright 'Vova', 'All right reserved'
 	end
 	def nav_items
 		[ 	

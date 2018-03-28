@@ -6,9 +6,14 @@
 @import "bootstrap";
 @import "font-awesome";
 @import "gritter";
+body{
+  font-family: 'Lato', sans-serif;
+}
+
 .container{
   width: 75%;
 }
+
 .blog-header {
   line-height: 1;
   border-bottom: 1px solid #e5e5e5;
@@ -25,7 +30,7 @@
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: "Playfair Display", Georgia, "Times New Roman", serif;
+  font-family: 'Roboto Slab', serif; 
 }
 
 .display-4 {
@@ -185,4 +190,18 @@ aside{
 
 .comment-name {
   font-weight: 700;
+}
+.pull-right {
+    margin-left: 39%;
+}
+.blogcrump {
+  backgrond:grey;
+}
+.blogcrump a {
+  font-size: 2em;
+  margin-right: 20px;
+
+}
+.blog-nav {
+  margin-bottom: 30px;
 }
