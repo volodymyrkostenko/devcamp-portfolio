@@ -3,24 +3,48 @@ module BlogsHelper
     image_tag "https://www.gravatar.com/avatar/#{Digest::MD5.hexdigest(user.email)}", width: 60
   end
 
-  class CodeRayify < Redcarpet::Render::HTML
-    def block_code(code, language)
-      CodeRay.scan(code, language).div
-    end
+  def code text
+    puts text
+    re = /```[^```]*```/
+    reg = /.*\s/
+    code =  text.scan(re)
+    if code.empty?
+        text
+    else
+      code.each do |code|
+         pattern= code
+         code.delete!("```")
+         lang =code.slice(reg).strip
+         block =code.sub(reg, "")
+         block_code=CodeRay.scan( block, lang).div
+         text.gsub!(pattern, block_code)
+      end
+      text.delete!("```").html_safe
+
+    end  
   end
+  
 
+
+  
   def markdown(text)
-    coderayified = CodeRayify.new(filter_html: true, hard_wrap: true)
-
     options = {
-      fenced_code_blocks: true,
-      no_intra_emphasis: true,
-      autolink: true,
-      lax_html_blocks: true,
+    
+      hard_wrap:       true,
+      space_after_headers: true,
+      fenced_code_blocks: false
     }
 
-    markdown_to_html = Redcarpet::Markdown.new(coderayified, options)
-    markdown_to_html.render(text).html_safe
+    extensions = {
+      autolink:           true,
+      superscript:        true,
+      disable_indented_code_blocks: true
+    }
+
+    renderer = Redcarpet::Render::HTML.new(options)
+    markdown = Redcarpet::Markdown.new(renderer, extensions)
+    text_with_code = code(text)
+    markdown.render(text_with_code).html_safe
   end
 
   def blog_status_color blog
