@@ -17,7 +17,7 @@ require "sprockets/railtie"
 Bundler.require(*Rails.groups)
 
 if Rack::Utils.respond_to?("key_space_limit=")
-  Rack::Utils.key_space_limit = 862144 # 4 times the default size
+  Rack::Utils.key_space_limit = 7862144 # 4 times the default size
 end
 
 module DevcampPortfolio
