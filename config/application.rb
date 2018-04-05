@@ -16,6 +16,10 @@ require "sprockets/railtie"
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
+if Rack::Utils.respond_to?("key_space_limit=")
+  Rack::Utils.key_space_limit = 262144 # 4 times the default size
+end
+
 module DevcampPortfolio
   class Application < Rails::Application
   	config.eager_load_paths << "#{Rails.root}/lib"
